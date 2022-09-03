@@ -11,13 +11,15 @@ export default function App(props) {
     return (
         <>
             <Navbar />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/posts' element={<BlogPosts />} />
-                <Route path='/create-post' element={<CreatePost />} />
-                <Route path='/signup' element={<SignUp />} />
-                <Route path='/login' element={<Login />} />
-            </Routes>
+            <div className="container">
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/posts' element={<BlogPosts />} />
+                    <Route path='/create-post' element={<CreatePost />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/login' element={<Login />} />
+                </Routes>
+            </div>
         </>
     )
 }
