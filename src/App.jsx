@@ -34,7 +34,7 @@ export default function App(props) {
 
     return (
         <>
-            <Navbar logout={logout}/>
+            <Navbar logout={logout} loggedIn={loggedIn}/>
             <div className="container">
                 {message ? <FlashMessage message={message} category={category} 
                     flashMessage={flashMessage}/> : null}

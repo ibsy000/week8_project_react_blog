@@ -14,10 +14,17 @@ export default function Navbar(props) {
                         <div className="navbar-nav">
                             <Link className="nav-link" to="/">Home</Link>
                             <Link className="nav-link" to="/posts">Blog Posts</Link>
-                            <Link className="nav-link" to="/create-post">Create Post</Link>
-                            <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
-                            <Link className="nav-link" to="/signup">Sign Up</Link>
-                            <Link className="nav-link" to="/login">Login</Link>
+                            {props.loggedIn ? 
+                                <>
+                                    <Link className="nav-link" to="/create-post">Create Post</Link>
+                                    <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
+                                </>
+                                :
+                                <>
+                                    <Link className="nav-link" to="/signup">Sign Up</Link>
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>
