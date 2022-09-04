@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignUp(props) {
+
+    // set redirect variable to send newly created users to login page
+    let navigate = useNavigate()
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -12,9 +16,35 @@ export default function SignUp(props) {
         // if passwords do not match
         if (password !== confirmPass){
             props.flashMessage('Your passwords do not match. Please try again.', 'danger')
-        // if passwords match
+        // if passwords match set up request to Flask API
         } else {
             console.log('Your passwords match. Congrats!')
+
+            // set headers to match Postman POST request
+            let myHeaders = new Headers()
+            myHeaders.append("Content-Type", "application/json")
+
+            // stringify json data
+            let formData = JSON.stringify({
+                username: event.target.username.value,
+                email: event.target.email.value,
+                password: password // set variable for password data at start
+            })
+            // submit POST request to API server
+            fetch("https://kekambas-blog.herokuapp.com//auth/users", {
+                method: 'POST',
+                headers: myHeaders,
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error){
+                        console.error(data.error)
+                    } else {
+                        props.flashMessage(`${data.username} has signed up successfully.`, 'success')
+                        navigate('/login')
+                    }
+                })
         }
     }
 
