@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import SignUp from './components/SignUp'
+import SinglePost from './components/SinglePost'
 
 export default function App(props) {
 
@@ -31,6 +32,7 @@ export default function App(props) {
         setLoggedIn(false)
         flashMessage('You are now logged out. Come back soon!', 'success')
     }
+    
 
     return (
         <>
@@ -41,9 +43,12 @@ export default function App(props) {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/posts' element={<BlogPosts />} />
-                    <Route path='/create-post' element={<CreatePost />} />
+                    <Route path='/create-post' element={<CreatePost loggedIn={loggedIn} 
+                        flashMessage={flashMessage}/>} />
                     <Route path='/signup' element={<SignUp flashMessage={flashMessage}/>} />
-                    <Route path='/login' element={<Login flashMessage={flashMessage} login={login} />} />
+                    <Route path='/login' element={<Login flashMessage={flashMessage} 
+                        login={login} />} />
+                    <Route path='/posts/*' element={<SinglePost />} />
                 </Routes>
             </div>
         </>

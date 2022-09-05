@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SortBy from './SortBy'
+import { Link } from 'react-router-dom'
 
 
 export default function BlogPosts(props) {
@@ -63,7 +64,7 @@ export default function BlogPosts(props) {
                                             {newDate}
                                         </small>
                                     </p>
-                                    <a href="/" className="btn btn-primary mt-2">View Full Post</a>
+                                    <Link to={`/posts/${post.id}`} className="btn btn-primary mt-2">View Full Post</Link>
                                 </div>
                         </div>
                     </div>
