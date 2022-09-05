@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CreatePost() {
+export default function CreatePost(props) {
     return (
         <>
             <h1 className="text-center mt-4">Create A New Post</h1>

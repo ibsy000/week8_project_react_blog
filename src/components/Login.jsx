@@ -26,7 +26,7 @@ export default function Login(props) {
 
             props.login()
 
-            props.flashMessage(`${username} has successfully logged in. Welcome back!`, 'success')
+            props.flashMessage(`Hey, ${username} thanks for logging in. Welcome back!`, 'success')
             navigate('/')
         } else {
             props.flashMessage('Your username and/or password are incorrect', 'danger')
