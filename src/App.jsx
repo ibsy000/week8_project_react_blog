@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import BlogPosts from './components/BlogPosts'
 import CreatePost from './components/CreatePost'
-import DeletePost from './components/DeletePost'
 import EditPost from './components/EditPost'
 import FlashMessage from './components/FlashMessage'
 import Home from './components/Home'
@@ -52,7 +51,6 @@ export default function App(props) {
                         login={login} />} />
                     <Route path='/posts/:id' element={<SinglePost flashMessage={flashMessage}/>} />
                     <Route path='/posts/:id/edit-post' element={<EditPost flashMessage={flashMessage}/>} />
-                    <Route path='/posts/:id/delete-post' element={<DeletePost />} />
                 </Routes>
             </div>
         </>

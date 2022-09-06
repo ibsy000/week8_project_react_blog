@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import DeletePostbutton from './DeletePostbutton'
 
 export default function SinglePost(props) {
     let navigate = useNavigate()
@@ -18,6 +19,24 @@ export default function SinglePost(props) {
                 setAuthor(postData.author)
             })
     }, [id])
+
+    const deletePost = () => {
+        var myHeaders = new Headers()
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'))
+
+        fetch (`https://kekambas-blog.herokuapp.com//blog/posts/${id}`, {
+            method: 'DELETE',
+            headers: myHeaders,
+        })
+            .then (res => {
+                if (res.ok){
+                    props.flashMessage('Your post has been obliterated! You will never see it again', 'danger')
+                    navigate('/posts')
+                } else {
+                    props.flashMessage('Uhh excuse me? You cannot delete this post', 'danger')
+                }
+            })
+    }
 
     return (
         <>
@@ -38,38 +57,7 @@ export default function SinglePost(props) {
                                     onClick={() => (navigate(`/posts/${id}/edit-post`, 
                                     {state:{post:post, author:author}}))}>Edit Post</button>
 
-                                {/* <button type="button" className="btn btn-danger mt-2"
-                                    onClick={() => (navigate(`/posts/${id}/delete-post`, 
-                                    {state:{post:post, author:author}}))}>Delete Post</button> */}
-                                    <button type="button" className="btn btn-danger mt-2" 
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    >Delete Post</button>
-                                        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div className="modal-dialog">
-                                            <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h5 className="modal-title" id="exampleModalLabel">Delete Post?</h5>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div className="modal-body">
-                                                Are you sure you want to delete "{post.title}"?
-                                                <br></br>
-                                                This decision cannot be reversed.
-                                                </div>
-                                                <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Abort</button>
-                                                <button type="button" className="btn btn-danger"
-                                                    onClick={() => {
-                                                        props.flashMessage('Your post has been deleted', 'success')
-                                                        navigate('/posts')
-                                                    }}>Delete Post</button>
-                                                    {/* Delete post button doesn't have logic to delete post */}
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </div>
-
-
+                                    <DeletePostbutton title={post.title} deletePost={deletePost}/>
                                 </>
                             : null
                         }
