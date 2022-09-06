@@ -50,9 +50,8 @@ export default function App(props) {
                     <Route path='/signup' element={<SignUp flashMessage={flashMessage}/>} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} 
                         login={login} />} />
-                    <Route path='/posts/:id' element={<SinglePost />} />
-                    <Route path='/posts/:id/edit-post' element={<EditPost />}
-                        flashMessage={flashMessage}/>
+                    <Route path='/posts/:id' element={<SinglePost flashMessage={flashMessage}/>} />
+                    <Route path='/posts/:id/edit-post' element={<EditPost flashMessage={flashMessage}/>} />
                     <Route path='/posts/:id/delete-post' element={<DeletePost />} />
                 </Routes>
             </div>
