@@ -23,6 +23,7 @@ export default function Login(props) {
             let data = await response.json()
 
             localStorage.setItem('token', data.token)
+            localStorage.setItem('username', username)
 
             props.login()
 

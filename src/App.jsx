@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import BlogPosts from './components/BlogPosts'
 import CreatePost from './components/CreatePost'
+import DeletePost from './components/DeletePost'
+import EditPost from './components/EditPost'
 import FlashMessage from './components/FlashMessage'
 import Home from './components/Home'
 import Login from './components/Login'
@@ -28,7 +30,7 @@ export default function App(props) {
 
     const logout = () => {
         localStorage.removeItem('token')
-        localStorage.removeItem('expiration')
+        localStorage.removeItem('username')
         setLoggedIn(false)
         flashMessage('You are now logged out. Come back soon!', 'success')
     }
@@ -48,7 +50,10 @@ export default function App(props) {
                     <Route path='/signup' element={<SignUp flashMessage={flashMessage}/>} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} 
                         login={login} />} />
-                    <Route path='/posts/*' element={<SinglePost />} />
+                    <Route path='/posts/:id' element={<SinglePost />} />
+                    <Route path='/posts/:id/edit-post' element={<EditPost />}
+                        flashMessage={flashMessage}/>
+                    <Route path='/posts/:id/delete-post' element={<DeletePost />} />
                 </Routes>
             </div>
         </>

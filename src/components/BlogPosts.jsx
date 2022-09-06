@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 
 
 export default function BlogPosts(props) {
-    let imgSize = 300
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
 
     const [posts, setPosts] = useState([])
 
@@ -44,12 +47,10 @@ export default function BlogPosts(props) {
                     <div className="row g-0">
 
                         <div className="col-md-4">
-                            {(imgSize < 500) ? 
-                                imgSize++ && 
-                                <img src={`https://picsum.photos/200/${imgSize}`} 
+                            {(post) ? 
+                                <img src={`https://picsum.photos/id/${getRandomInt(400, 451)}/200/300`} 
                                     className="img-fluid rounded-start" alt=''/>
-                                : <img src={`https://picsum.photos/200/${imgSize}`} 
-                                className="img-fluid rounded-start" alt=''/>}
+                                : null}
                         </div>
                         
                         <div className="col-md-8">
