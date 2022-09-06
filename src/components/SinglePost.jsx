@@ -32,9 +32,16 @@ export default function SinglePost(props) {
                         <li className="list-group-item"><h4>{post.content}</h4></li>
                         {/* <Link to={`/posts/${id}/edit-post`} className="btn btn-success mt-2">Edit Post</Link>
                         <Link to={`/posts/${id}/delete-post`} className="btn btn-danger mt-2">Delete Post</Link> */}
-                        <button type="button" className="btn btn-success mt-2"
-                            onClick={() => (navigate(`/posts/${id}/edit-post`, {state:{post:post}}))}>Edit Post</button>
-                        <button type="button" className="btn btn-danger mt-2">Delete Post</button>
+                        {(author.username === localStorage.getItem('username'))
+                            ? <>
+                                <button type="button" className="btn btn-success mt-2"
+                                    onClick={() => (navigate(`/posts/${id}/edit-post`, {state:{post:post}}))}>Edit Post</button>
+
+                                <button type="button" className="btn btn-danger mt-2"
+                                    onClick={() => (navigate(`/posts/${id}/delete-post`, {state:{post:post}}))}>Delete Post</button>
+                                </>
+                            : null
+                        }
                     </ul>
                 </div>
             </div>
