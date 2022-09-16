@@ -49,8 +49,7 @@ export default function SinglePost(props) {
                             <h6>{author.username}</h6>
                         </li>
                         <li className="list-group-item"><h4>{post.content}</h4></li>
-                        {/* <Link to={`/posts/${id}/edit-post`} className="btn btn-success mt-2">Edit Post</Link>
-                        <Link to={`/posts/${id}/delete-post`} className="btn btn-danger mt-2">Delete Post</Link> */}
+                        
                         {(author.username === localStorage.getItem('username'))
                             ? <>
                                 <button type="button" className="btn btn-success mt-2"
